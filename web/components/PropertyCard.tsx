@@ -72,7 +72,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           </div>
           <div className="flex flex-col items-center justify-center text-center">
             <FaRulerCombined className="text-slate-400 mb-1" />
-            <span className="text-xs font-semibold text-slate-600">{property.area || 120} m²</span>
+            <span className="text-xs font-semibold text-slate-600">{property.constructionSize || 120} m²</span>
           </div>
         </div>
 

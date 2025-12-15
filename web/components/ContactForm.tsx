@@ -3,7 +3,7 @@
 import { useState } from 'react';
 
 interface ContactFormProps {
-  propertyId: string;
+  propertyId?: string;
 }
 
 export default function ContactForm({ propertyId }: ContactFormProps) {
@@ -51,7 +51,9 @@ export default function ContactForm({ propertyId }: ContactFormProps) {
 
   return (
     <div className="bg-white rounded-xl shadow-md p-6 border border-gray-100">
-      <h3 className="text-xl font-bold text-slate-900 mb-4">¿Te interesa esta propiedad?</h3>
+      <h3 className="text-xl font-bold text-slate-900 mb-4">
+        {propertyId ? '¿Te interesa esta propiedad?' : 'Contáctanos'}
+      </h3>
       <p className="text-gray-600 mb-6 text-sm">Déjanos tus datos y un asesor se pondrá en contacto contigo a la brevedad.</p>
 
       {status === 'success' ? (
@@ -116,7 +118,7 @@ export default function ContactForm({ propertyId }: ContactFormProps) {
               onChange={handleChange}
               rows={3}
               className="w-full border border-gray-300 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent transition-shadow text-slate-900"
-              placeholder="Hola, me interesa esta propiedad..."
+              placeholder={propertyId ? "Hola, me interesa esta propiedad..." : "Hola, me gustaría recibir más información..."}
             ></textarea>
           </div>
 
@@ -135,7 +137,7 @@ export default function ContactForm({ propertyId }: ContactFormProps) {
                 : 'bg-emerald-600 hover:bg-emerald-700 shadow-emerald-500/30'
             }`}
           >
-            {status === 'submitting' ? 'Enviando...' : 'Enviar interés'}
+            {status === 'submitting' ? 'Enviando...' : (propertyId ? 'Enviar interés' : 'Enviar mensaje')}
           </button>
         </form>
       )}

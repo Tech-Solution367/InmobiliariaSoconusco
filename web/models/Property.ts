@@ -14,6 +14,10 @@ export interface IProperty extends mongoose.Document {
   location: string;
   latitude: number;
   longitude: number;
+  bedrooms?: number;
+  bathrooms?: number;
+  constructionSize?: number;
+  lotSize?: number;
   images: string[];
   video?: string;
   view360?: string;
@@ -61,6 +65,10 @@ const PropertySchema = new mongoose.Schema<IProperty>({
     type: Number,
     required: [true, 'Please provide longitude.'],
   },
+  bedrooms: { type: Number },
+  bathrooms: { type: Number },
+  constructionSize: { type: Number },
+  lotSize: { type: Number },
   images: {
     type: [String],
     validate: [arrayLimit, '{PATH} debe tener entre 15 y 20 imágenes.'],

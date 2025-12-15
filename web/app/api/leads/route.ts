@@ -10,14 +10,19 @@ export async function POST(request: Request) {
     const body = await request.json();
     const { name, propertyId } = body;
 
-    if (!name || !propertyId) {
-      return NextResponse.json({ success: false, error: 'Name and Property ID are required' }, { status: 400 });
+    if (!name) {
+      return NextResponse.json({ success: false, error: 'Name is required' }, { status: 400 });
     }
 
-    const lead = await Lead.create({
+    const leadData: any = {
       ...body,
-      property: propertyId,
-    });
+    };
+
+    if (propertyId) {
+      leadData.property = propertyId;
+    }
+
+    const lead = await Lead.create(leadData);
 
     return NextResponse.json({ success: true, data: lead }, { status: 201 });
   } catch (error) {
