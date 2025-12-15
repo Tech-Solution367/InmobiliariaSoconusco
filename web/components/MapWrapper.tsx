@@ -9,11 +9,15 @@ const PropertyMap = dynamic(() => import('./PropertyMap'), {
 });
 
 interface MapWrapperProps {
-  latitude: number;
-  longitude: number;
+  latitude?: number;
+  longitude?: number;
   nearbyPlaces?: INearbyPlace[];
 }
 
-export default function MapWrapper(props: MapWrapperProps) {
-  return <PropertyMap {...props} />;
+export default function MapWrapper({ 
+  latitude = 14.9056, 
+  longitude = -92.2633, 
+  nearbyPlaces = [] 
+}: MapWrapperProps) {
+  return <PropertyMap latitude={latitude} longitude={longitude} nearbyPlaces={nearbyPlaces} />;
 }

@@ -1,70 +1,116 @@
 import Navbar from '@/components/Navbar';
-import { FaWhatsapp, FaEnvelope, FaPhoneAlt } from 'react-icons/fa';
+import ContactForm from '@/components/ContactForm';
+import MapWrapper from '@/components/MapWrapper';
+import { FaWhatsapp, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
 
 export default function ContactPage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <Navbar />
-      <div className="container mx-auto p-4 py-12">
-        <div className="max-w-3xl mx-auto bg-white rounded-lg shadow-xl overflow-hidden">
-          <div 
-            className="relative bg-slate-900 p-8 text-center bg-cover bg-center"
-            style={{ 
-              backgroundImage: 'url(/backgrounds/contact.jpg)',
-              backgroundColor: '#0f172a'
-            }}
-          >
-            <div className="absolute inset-0 bg-black bg-opacity-60"></div>
-            <div className="relative z-10">
-              <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Contáctanos</h1>
-              <p className="text-blue-200">¿Quieres vender o rentar tu propiedad? ¡Nosotros te ayudamos!</p>
-            </div>
-          </div>
+      
+      {/* Header Section */}
+      <div className="bg-slate-900 text-white py-20 relative overflow-hidden">
+        <div className="absolute inset-0 opacity-20">
+           <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        </div>
+        <div className="container mx-auto px-4 text-center relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display">Contáctanos</h1>
+          <p className="text-xl text-slate-300 max-w-2xl mx-auto font-light">
+            Estamos aquí para ayudarte a encontrar tu propiedad ideal o vender la tuya al mejor precio.
+          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 py-16 -mt-10 relative z-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
-          <div className="p-8 md:p-12">
-            <div className="text-center mb-10">
-              <p className="text-xl text-gray-700 mb-6">
-                Si deseas que tu inmueble aparezca en nuestro sitio web y llegue a miles de clientes potenciales, 
-                contáctanos a través de los siguientes medios:
-              </p>
+          {/* Contact Info Cards */}
+          <div className="lg:col-span-1 space-y-6">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+              <h3 className="text-xl font-bold text-slate-900 mb-6 font-display border-b border-slate-100 pb-4">Información de Contacto</h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start gap-4">
+                  <div className="bg-amber-100 p-3 rounded-full text-amber-600 shrink-0">
+                    <FaMapMarkerAlt className="text-xl" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800">Ubicación</h4>
+                    <p className="text-slate-500 text-sm">Av. Central Norte #123,<br />Tapachula, Chiapas, México</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-blue-100 p-3 rounded-full text-blue-600 shrink-0">
+                    <FaPhoneAlt className="text-xl" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800">Teléfono</h4>
+                    <p className="text-slate-500 text-sm">+52 962 123 4567</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-green-100 p-3 rounded-full text-green-600 shrink-0">
+                    <FaWhatsapp className="text-xl" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800">WhatsApp</h4>
+                    <p className="text-slate-500 text-sm">962 222 9339</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-purple-100 p-3 rounded-full text-purple-600 shrink-0">
+                    <FaEnvelope className="text-xl" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800">Email</h4>
+                    <p className="text-slate-500 text-sm break-all">contacto@inmobiliariasoconusco.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="bg-slate-100 p-3 rounded-full text-slate-600 shrink-0">
+                    <FaClock className="text-xl" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-800">Horario</h4>
+                    <p className="text-slate-500 text-sm">Lun - Vie: 9:00 AM - 6:00 PM<br/>Sáb: 9:00 AM - 2:00 PM</p>
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-8 rounded-2xl shadow-lg text-white text-center">
+              <h3 className="text-xl font-bold mb-4 font-display">¿Listo para publicar?</h3>
+              <p className="mb-6 text-amber-100 text-sm">
+                Únete a nuestra red y llega a miles de compradores potenciales hoy mismo.
+              </p>
               <a 
                 href="https://wa.me/529622229339" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="flex flex-col items-center p-6 bg-green-50 rounded-xl border border-green-100 hover:shadow-lg transition-shadow group"
+                className="inline-block bg-white text-amber-600 px-6 py-3 rounded-full font-bold hover:bg-slate-100 transition-colors shadow-md"
               >
-                <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center text-white text-3xl mb-4 group-hover:scale-110 transition-transform">
-                  <FaWhatsapp />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">WhatsApp</h3>
-                <p className="text-green-600 font-semibold text-lg">962 222 9339</p>
-                <span className="text-sm text-gray-500 mt-2">Clic para chatear</span>
+                Contactar Asesor
               </a>
-
-              <a 
-                href="mailto:oscaralexander_28@hotmail.com"
-                className="flex flex-col items-center p-6 bg-blue-50 rounded-xl border border-blue-100 hover:shadow-lg transition-shadow group"
-              >
-                <div className="w-16 h-16 bg-blue-600 rounded-full flex items-center justify-center text-white text-3xl mb-4 group-hover:scale-110 transition-transform">
-                  <FaEnvelope />
-                </div>
-                <h3 className="text-xl font-bold text-gray-800 mb-2">Correo Electrónico</h3>
-                <p className="text-blue-600 font-semibold text-lg break-all">oscaralexander_28@hotmail.com</p>
-                <span className="text-sm text-gray-500 mt-2">Escríbenos un email</span>
-              </a>
-            </div>
-
-            <div className="mt-12 p-6 bg-yellow-50 rounded-lg border border-yellow-200 text-center">
-              <h3 className="text-lg font-bold text-yellow-800 mb-2">¿Qué sucede después?</h3>
-              <p className="text-gray-700">
-                Una vez que nos contactes, te daremos acceso para que puedas subir toda la información de tu propiedad, 
-                incluyendo fotos, videos y recorridos 360°.
-              </p>
             </div>
           </div>
+
+          {/* Contact Form & Map */}
+          <div className="lg:col-span-2 space-y-8">
+            <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
+              <h3 className="text-2xl font-bold text-slate-900 mb-2 font-display">Envíanos un Mensaje</h3>
+              <p className="text-slate-500 mb-8">Completa el formulario y nos pondremos en contacto contigo a la brevedad.</p>
+              <ContactForm />
+            </div>
+
+            <div className="bg-white p-2 rounded-2xl shadow-lg border border-slate-100 h-[400px] overflow-hidden">
+               <MapWrapper latitude={14.9056} longitude={-92.2633} />
+            </div>
+          </div>
+
         </div>
       </div>
     </div>

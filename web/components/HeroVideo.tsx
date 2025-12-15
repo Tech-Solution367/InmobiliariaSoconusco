@@ -54,18 +54,6 @@ export default function HeroVideo({ src, muted: initialMuted = true, volume = 1,
     }
   };
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (videoRef.current.paused) {
-        videoRef.current.play();
-        setIsPlaying(true);
-      } else {
-        videoRef.current.pause();
-        setIsPlaying(false);
-      }
-    }
-  };
-
   return (
     <div className="relative h-64 md:h-80 w-full overflow-hidden bg-slate-900 group">
       <video
@@ -73,9 +61,8 @@ export default function HeroVideo({ src, muted: initialMuted = true, volume = 1,
         loop={loop}
         muted={isMuted}
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
+        autoPlay
+        className="absolute inset-0 w-full h-full object-cover pointer-events-none"
       >
         <source src={src} type="video/mp4" />
         Tu navegador no soporta videos HTML5.
@@ -101,20 +88,11 @@ export default function HeroVideo({ src, muted: initialMuted = true, volume = 1,
 
       {/* Controls Container */}
       <div className="absolute bottom-4 right-4 z-20 flex gap-2">
-        {/* Play/Pause Control */}
-        <button 
-          onClick={togglePlay}
-          className="bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all cursor-pointer"
-          title={isPlaying ? "Pausar" : "Reproducir"}
-        >
-          {isPlaying ? <FaPause size={20} /> : <FaPlay size={20} />}
-        </button>
-
         {/* Audio Control - Only show if audio was requested (initialMuted=false) */}
         {!initialMuted && (
           <button 
             onClick={toggleMute}
-            className="bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all cursor-pointer"
+            className="bg-black/50 hover:bg-black/70 text-white p-3 rounded-full transition-all cursor-pointer backdrop-blur-sm"
             title={isMuted ? "Activar sonido" : "Silenciar"}
           >
             {isMuted ? <FaVolumeMute size={20} /> : <FaVolumeUp size={20} />}

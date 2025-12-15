@@ -4,6 +4,7 @@ import PropertyCard from '@/components/PropertyCard';
 import Navbar from '@/components/Navbar';
 import PriceFilter from '@/components/PriceFilter';
 import HeroVideo from '@/components/HeroVideo';
+import { FaSearch } from 'react-icons/fa';
 
 async function getProperties(searchParams: { [key: string]: string | string[] | undefined }) {
   await dbConnect();
@@ -35,18 +36,29 @@ export default async function VentasPage({
   const properties = await getProperties(resolvedSearchParams);
 
   return (
-    <main className="min-h-screen bg-gray-50">
+    <main className="min-h-screen bg-slate-50">
       <Navbar />
       
-      <HeroVideo 
-        src="/videos/CasaDeVenta.mp4"
-        title="Propiedades en Venta"
-        subtitle="Explora nuestra selección exclusiva de propiedades disponibles para la venta en la región del Soconusco."
-        muted={true}
-      />
+      <div className="relative">
+        <HeroVideo 
+          src="/videos/CasaDeVenta.mp4"
+          title="Propiedades en Venta"
+          subtitle="Explora nuestra selección exclusiva de propiedades disponibles para la venta en la región del Soconusco."
+          muted={true}
+        />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 to-transparent"></div>
+      </div>
 
-      <div className="container mx-auto p-4 mt-8">
-        <PriceFilter />
+      <div className="container mx-auto px-4 -mt-20 relative z-10 mb-20">
+        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-12 border border-slate-100">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="bg-amber-500 p-2 rounded-lg text-white">
+              <FaSearch />
+            </div>
+            <h2 className="text-xl font-bold text-slate-800 font-display">Filtrar Propiedades</h2>
+          </div>
+          <PriceFilter />
+        </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (
@@ -55,8 +67,10 @@ export default async function VentasPage({
         </div>
 
         {properties.length === 0 && (
-          <div className="text-center text-gray-500 mt-12 p-8 bg-white rounded-lg shadow">
-            <p className="text-xl">No hay propiedades en venta disponibles con estos criterios.</p>
+          <div className="text-center text-slate-500 mt-12 p-16 bg-white rounded-2xl shadow-sm border border-slate-100">
+            <div className="text-6xl mb-4">🏠</div>
+            <p className="text-2xl font-light mb-2">No encontramos propiedades con esos criterios.</p>
+            <p className="text-slate-400">Intenta ajustar los filtros de búsqueda.</p>
           </div>
         )}
       </div>
