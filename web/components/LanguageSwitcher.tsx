@@ -14,10 +14,10 @@ export default function LanguageSwitcher({ variant = 'dropdown' }: LanguageSwitc
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   const languages: { code: Language; label: string; flag: string }[] = [
-    { code: 'es', label: 'Espa�ol', flag: '' },
-    { code: 'en', label: 'English', flag: '' },
-    { code: 'zh', label: '??', flag: '' },
-    { code: 'ru', label: '???????', flag: '' },
+    { code: 'es', label: 'Español', flag: '🇲🇽' },
+    { code: 'en', label: 'English', flag: '🇺🇸' },
+    { code: 'zh', label: '中文', flag: '🇨🇳' },
+    { code: 'ru', label: 'Русский', flag: '🇷🇺' },
   ];
 
   useEffect(() => {
@@ -40,7 +40,11 @@ export default function LanguageSwitcher({ variant = 'dropdown' }: LanguageSwitc
           <button
             key={lang.code}
             onClick={() => setLanguage(lang.code)}
-            className={lex items-center gap-2 px-3 py-2 rounded-full border transition-all }
+            className={`flex items-center gap-2 px-3 py-2 rounded-full border transition-all ${
+              language === lang.code
+                ? 'bg-amber-500 text-white border-amber-500 shadow-md'
+                : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'
+            }`}
           >
             <span className="text-lg">{lang.flag}</span>
             <span className="text-sm font-medium uppercase">{lang.code}</span>
@@ -70,7 +74,9 @@ export default function LanguageSwitcher({ variant = 'dropdown' }: LanguageSwitc
                 setLanguage(lang.code);
                 setIsOpen(false);
               }}
-              className={w-full text-left px-4 py-3 text-sm flex items-center gap-3 hover:bg-slate-50 transition-colors }
+              className={`w-full flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors text-left ${
+                language === lang.code ? 'text-amber-600 font-bold bg-amber-50' : 'text-slate-600'
+              }`}
             >
               <span className="text-lg">{lang.flag}</span>
               {lang.label}

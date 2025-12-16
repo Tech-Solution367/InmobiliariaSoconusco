@@ -4,13 +4,14 @@ import Link from 'next/link';
 import { IProperty } from '@/models/Property';
 import { FaMapMarkerAlt, FaTag, FaBed, FaBath, FaRulerCombined } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
+import { formatPrice } from '@/lib/currency';
 
 interface PropertyCardProps {
   property: IProperty;
 }
 
 const PropertyCard = ({ property }: PropertyCardProps) => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="group border border-slate-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white hover:-translate-y-2 flex flex-col h-full">
@@ -50,7 +51,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         {/* Price Tag Overlay */}
         <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-4 pt-12">
           <div className="text-white font-bold text-2xl font-display">
-            ${property.price.toLocaleString()}
+            {formatPrice(property.price, language)}
           </div>
         </div>
       </div>

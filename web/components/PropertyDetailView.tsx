@@ -7,13 +7,14 @@ import MapWrapper from '@/components/MapWrapper';
 import ContactForm from '@/components/ContactForm';
 import { IProperty } from '@/models/Property';
 import { useLanguage } from '@/context/LanguageContext';
+import { formatPrice, CURRENCY_RATES } from '@/lib/currency';
 
 interface PropertyDetailViewProps {
   property: IProperty;
 }
 
 export default function PropertyDetailView({ property }: PropertyDetailViewProps) {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -63,7 +64,7 @@ export default function PropertyDetailView({ property }: PropertyDetailViewProps
 
               <div className="flex items-center text-slate-900 font-bold text-4xl mb-8">
                 <FaTag className="mr-3 text-yellow-500" />
-                ${property.price.toLocaleString()} <span className="text-lg text-gray-500 font-normal ml-2">MXN</span>
+                {formatPrice(property.price, language)} <span className="text-lg text-gray-500 font-normal ml-2">{CURRENCY_RATES[language as keyof typeof CURRENCY_RATES]?.code}</span>
               </div>
 
               <div className="prose max-w-none mb-8 text-gray-700 flex-grow">

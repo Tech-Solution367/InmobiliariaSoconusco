@@ -4,9 +4,10 @@ import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FaFilter, FaChevronDown } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
+import { formatPrice, convertToMXN, convertFromMXN } from '@/lib/currency';
 
 export default function PriceFilter() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -17,21 +18,26 @@ export default function PriceFilter() {
   useEffect(() => {
     const min = searchParams.get('minPrice');
     const max = searchParams.get('maxPrice');
-    if (min) setMinPrice(min);
-    if (max) setMaxPrice(max);
-  }, [searchParams]);
+    if (min) setMinPrice(Math.round(convertFromMXN(Number(min), language)).toString());
+    else setMinPrice('');
+    
+    if (max) setMaxPrice(Math.round(convertFromMXN(Number(max), language)).toString());
+    else setMaxPrice('');
+  }, [searchParams, language]);
 
   const handleFilter = () => {
     const params = new URLSearchParams(searchParams.toString());
     
     if (minPrice) {
-      params.set('minPrice', minPrice);
+      const minMXN = Math.round(convertToMXN(Number(minPrice), language));
+      params.set('minPrice', minMXN.toString());
     } else {
       params.delete('minPrice');
     }
 
     if (maxPrice) {
-      params.set('maxPrice', maxPrice);
+      const maxMXN = Math.round(convertToMXN(Number(maxPrice), language));
+      params.set('maxPrice', maxMXN.toString());
     } else {
       params.delete('maxPrice');
     }
@@ -44,6 +50,10 @@ export default function PriceFilter() {
     setMaxPrice('');
     router.push('?');
   };
+
+  // Calculate placeholders based on language
+  const minPlaceholder = formatPrice(1000000, language);
+  const maxPlaceholder = formatPrice(5000000, language);
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden mb-12">
@@ -77,7 +87,7 @@ export default function PriceFilter() {
                 type="number"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                placeholder={t('filter_placeholder_min')}
+                placeholder={minPlaceholder}
                 className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-slate-900 transition-all"
               />
             </div>
@@ -87,7 +97,7 @@ export default function PriceFilter() {
                 type="number"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                placeholder={t('filter_placeholder_max')}
+                placeholder={maxPlaceholder}
                 className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-slate-900 transition-all"
               />
             </div>
