@@ -15,7 +15,10 @@ export default function LanguageSwitcher({ variant = 'dropdown' }: LanguageSwitc
 
   const languages: { code: Language; label: string; flag: string }[] = [
     { code: 'es', label: 'Español', flag: '🇲🇽' },
-    { code: 'en', label: 'English', flag: '🇺🇸' },
+    { code: 'en', label: 'English (US)', flag: '🇺🇸' },
+    { code: 'en-GB', label: 'English (UK)', flag: '🇬🇧' },
+    { code: 'fr', label: 'Français', flag: '🇫🇷' },
+    { code: 'de', label: 'Deutsch', flag: '🇩🇪' },
     { code: 'zh', label: '中文', flag: '🇨🇳' },
     { code: 'ru', label: 'Русский', flag: '🇷🇺' },
   ];

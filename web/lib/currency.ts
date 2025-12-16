@@ -1,6 +1,9 @@
 export const CURRENCY_RATES = {
   es: { rate: 1, symbol: '$', code: 'MXN', locale: 'es-MX' },
   en: { rate: 0.05, symbol: '$', code: 'USD', locale: 'en-US' },
+  'en-GB': { rate: 0.038, symbol: '£', code: 'GBP', locale: 'en-GB' },
+  fr: { rate: 0.045, symbol: '€', code: 'EUR', locale: 'fr-FR' },
+  de: { rate: 0.045, symbol: '€', code: 'EUR', locale: 'de-DE' },
   zh: { rate: 0.36, symbol: '¥', code: 'CNY', locale: 'zh-CN' },
   ru: { rate: 5.0, symbol: '₽', code: 'RUB', locale: 'ru-RU' },
 };
