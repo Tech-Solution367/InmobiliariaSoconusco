@@ -48,7 +48,7 @@ export default async function VentasPage({
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-slate-50 to-transparent"></div>
       </div>
 
-      <div className="container mx-auto px-4 -mt-20 relative z-10 mb-20">
+      <div className="container mx-auto px-4 mt-6 md:-mt-20 relative z-10 mb-20">
         <PriceFilter />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
