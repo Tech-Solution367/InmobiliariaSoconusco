@@ -3,6 +3,7 @@ import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
 import CookieConsent from "@/components/CookieConsent";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -35,11 +36,13 @@ export default function RootLayout({
       <body
         className="font-sans antialiased flex flex-col min-h-screen bg-slate-50 text-slate-900"
       >
-        <div className="flex-grow">
-          {children}
-        </div>
-        <Footer />
-        <CookieConsent />
+        <LanguageProvider>
+          <div className="flex-grow">
+            {children}
+          </div>
+          <Footer />
+          <CookieConsent />
+        </LanguageProvider>
       </body>
     </html>
   );

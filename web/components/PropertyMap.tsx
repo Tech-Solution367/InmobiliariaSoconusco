@@ -6,6 +6,7 @@ import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 import { INearbyPlace } from '@/models/Property';
 import { FaSchool, FaUniversity, FaStore, FaConciergeBell, FaBriefcase, FaMapMarkerAlt } from 'react-icons/fa';
+import { useLanguage } from '@/context/LanguageContext';
 
 interface PropertyMapProps {
   latitude: number;
@@ -14,6 +15,8 @@ interface PropertyMapProps {
 }
 
 const PropertyMap = ({ latitude, longitude, nearbyPlaces = [] }: PropertyMapProps) => {
+  const { t } = useLanguage();
+
   useEffect(() => {
     // Fix Leaflet icon issue in Next.js
     // @ts-ignore
@@ -53,10 +56,10 @@ const PropertyMap = ({ latitude, longitude, nearbyPlaces = [] }: PropertyMapProp
     <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
       {/* Places List */}
       <div className="bg-white border border-gray-200 rounded-lg shadow-lg p-6 h-[400px] overflow-y-auto custom-scrollbar">
-        <h3 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">Lugares Cercanos</h3>
+        <h3 className="text-xl font-bold text-slate-900 mb-4 border-b pb-2">{t('prop_nearby')}</h3>
         
         {Object.keys(groupedPlaces).length === 0 ? (
-          <p className="text-gray-500 italic">Aún no se han registrado lugares cercanos para esta propiedad.</p>
+          <p className="text-gray-500 italic">{t('map_no_places')}</p>
         ) : (
           <div className="space-y-6">
             {Object.entries(groupedPlaces).map(([category, places]) => (
@@ -70,8 +73,8 @@ const PropertyMap = ({ latitude, longitude, nearbyPlaces = [] }: PropertyMapProp
                     <li key={index} className="text-sm text-gray-600">
                       <span className="font-medium text-slate-800">{place.name}</span>
                       <div className="flex gap-3 text-xs text-gray-500 mt-0.5">
-                        {place.distanceMeters && <span>{place.distanceMeters} m</span>}
-                        {place.walkingMinutes && <span>~{place.walkingMinutes} min caminando</span>}
+                        {place.distanceMeters && <span>{place.distanceMeters} {t('map_meters')}</span>}
+                        {place.walkingMinutes && <span>~{place.walkingMinutes} min {t('map_walking')}</span>}
                       </div>
                     </li>
                   ))}
@@ -96,7 +99,7 @@ const PropertyMap = ({ latitude, longitude, nearbyPlaces = [] }: PropertyMapProp
           />
           <Marker position={[latitude, longitude]}>
             <Popup>
-              Ubicación aproximada de la propiedad.
+              {t('prop_location')}
             </Popup>
           </Marker>
         </MapContainer>

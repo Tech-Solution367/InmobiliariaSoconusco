@@ -1,12 +1,17 @@
+'use client';
+
 import Link from 'next/link';
 import { IProperty } from '@/models/Property';
 import { FaMapMarkerAlt, FaTag, FaBed, FaBath, FaRulerCombined } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 interface PropertyCardProps {
   property: IProperty;
 }
 
 const PropertyCard = ({ property }: PropertyCardProps) => {
+  const { t } = useLanguage();
+
   return (
     <div className="group border border-slate-100 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 bg-white hover:-translate-y-2 flex flex-col h-full">
       <div className="h-64 bg-gray-200 relative overflow-hidden">
@@ -18,7 +23,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
           />
         ) : (
           <div className="flex items-center justify-center h-full text-gray-500 bg-slate-100">
-            <span className="text-sm font-medium">Sin Imagen</span>
+            <span className="text-sm font-medium">{t('card_no_image')}</span>
           </div>
         )}
         
@@ -29,7 +34,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
               ? 'bg-blue-600/90 text-white' 
               : 'bg-amber-500/90 text-slate-900'
           }`}>
-            {property.type === 'sale' ? 'Venta' : 'Renta'}
+            {property.type === 'sale' ? t('card_sale') : t('card_rent')}
           </div>
         </div>
         
@@ -37,7 +42,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         {(property.status === 'sold' || property.status === 'rented') && (
           <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center z-10">
             <div className="bg-red-600 text-white px-8 py-3 rounded-full text-xl font-bold transform -rotate-12 border-4 border-white shadow-2xl">
-              {property.status === 'sold' ? 'VENDIDA' : 'RENTADA'}
+              {property.status === 'sold' ? t('card_sold') : t('card_rented')}
             </div>
           </div>
         )}
@@ -64,11 +69,11 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
         <div className="grid grid-cols-3 gap-2 mb-6 py-4 border-t border-b border-slate-100">
           <div className="flex flex-col items-center justify-center text-center">
             <FaBed className="text-slate-400 mb-1" />
-            <span className="text-xs font-semibold text-slate-600">{property.bedrooms || 3} Hab</span>
+            <span className="text-xs font-semibold text-slate-600">{property.bedrooms || 3} {t('card_bedrooms')}</span>
           </div>
           <div className="flex flex-col items-center justify-center text-center border-l border-r border-slate-100">
             <FaBath className="text-slate-400 mb-1" />
-            <span className="text-xs font-semibold text-slate-600">{property.bathrooms || 2} Baños</span>
+            <span className="text-xs font-semibold text-slate-600">{property.bathrooms || 2} {t('card_bathrooms')}</span>
           </div>
           <div className="flex flex-col items-center justify-center text-center">
             <FaRulerCombined className="text-slate-400 mb-1" />
@@ -81,7 +86,7 @@ const PropertyCard = ({ property }: PropertyCardProps) => {
             href={`/properties/${property._id}`} 
             className="block w-full text-center bg-slate-900 text-white py-3 rounded-xl font-semibold hover:bg-amber-500 hover:text-slate-900 transition-all shadow-md hover:shadow-lg group-hover:translate-y-0"
           >
-            Ver Detalles
+            {t('card_view_details')}
           </Link>
         </div>
       </div>

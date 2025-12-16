@@ -3,8 +3,10 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { FaFilter, FaChevronDown } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function PriceFilter() {
+  const { t } = useLanguage();
   const router = useRouter();
   const searchParams = useSearchParams();
   
@@ -54,9 +56,9 @@ export default function PriceFilter() {
             <FaFilter />
           </div>
           <div>
-             <h2 className="text-xl font-bold text-slate-800 font-display">Filtrar Propiedades</h2>
+             <h2 className="text-xl font-bold text-slate-800 font-display">{t('filter_title')}</h2>
              <p className="text-sm text-slate-500 md:hidden">
-               {isOpen ? 'Toca para ocultar filtros' : 'Toca para mostrar filtros'}
+               {isOpen ? t('filter_hide') : t('filter_show')}
              </p>
           </div>
         </div>
@@ -67,25 +69,25 @@ export default function PriceFilter() {
 
       <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} md:max-h-[500px] md:opacity-100`}>
         <div className="p-6 pt-0 md:p-8 md:pt-0 border-t border-slate-100 md:border-none mt-2 md:mt-0">
-          <h3 className="text-lg font-semibold mb-4 text-slate-800 hidden md:block">Filtrar por Precio</h3>
+          <h3 className="text-lg font-semibold mb-4 text-slate-800 hidden md:block">{t('filter_by_price')}</h3>
           <div className="flex flex-col md:flex-row gap-4 items-end">
             <div className="w-full md:w-1/3">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Precio Mínimo</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter_min')}</label>
               <input
                 type="number"
                 value={minPrice}
                 onChange={(e) => setMinPrice(e.target.value)}
-                placeholder="Ej. 1000000"
+                placeholder={t('filter_placeholder_min')}
                 className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-slate-900 transition-all"
               />
             </div>
             <div className="w-full md:w-1/3">
-              <label className="block text-sm font-medium text-gray-700 mb-1">Precio Máximo</label>
+              <label className="block text-sm font-medium text-gray-700 mb-1">{t('filter_max')}</label>
               <input
                 type="number"
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(e.target.value)}
-                placeholder="Ej. 5000000"
+                placeholder={t('filter_placeholder_max')}
                 className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-slate-900 transition-all"
               />
             </div>
@@ -94,13 +96,13 @@ export default function PriceFilter() {
                 onClick={handleFilter}
                 className="flex-1 bg-slate-900 text-white py-3 px-4 rounded-xl font-bold hover:bg-amber-500 hover:text-slate-900 transition-all shadow-md"
               >
-                Filtrar
+                {t('filter_btn')}
               </button>
               <button
                 onClick={handleClear}
                 className="px-6 py-3 border border-slate-200 rounded-xl text-slate-600 font-semibold hover:bg-slate-50 transition-colors"
               >
-                Limpiar
+                {t('filter_clear')}
               </button>
             </div>
           </div>

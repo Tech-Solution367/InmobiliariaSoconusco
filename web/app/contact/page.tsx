@@ -1,9 +1,14 @@
+'use client';
+
 import Navbar from '@/components/Navbar';
 import ContactForm from '@/components/ContactForm';
 import MapWrapper from '@/components/MapWrapper';
 import { FaWhatsapp, FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaClock } from 'react-icons/fa';
+import { useLanguage } from '@/context/LanguageContext';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-slate-50">
       <Navbar />
@@ -14,9 +19,9 @@ export default function ContactPage() {
            <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
         </div>
         <div className="container mx-auto px-4 text-center relative z-10">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display">Contáctanos</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 font-display">{t('contact_title')}</h1>
           <p className="text-xl text-slate-300 max-w-2xl mx-auto font-light">
-            Estamos aquí para ayudarte a encontrar tu propiedad ideal o vender la tuya al mejor precio.
+            {t('contact_subtitle')}
           </p>
         </div>
       </div>
@@ -27,7 +32,7 @@ export default function ContactPage() {
           {/* Contact Info Cards */}
           <div className="lg:col-span-1 space-y-6">
             <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
-              <h3 className="text-xl font-bold text-slate-900 mb-6 font-display border-b border-slate-100 pb-4">Información de Contacto</h3>
+              <h3 className="text-xl font-bold text-slate-900 mb-6 font-display border-b border-slate-100 pb-4">{t('contact_info_title')}</h3>
               
               <div className="space-y-6">
                 <div className="flex items-start gap-4">
@@ -35,7 +40,7 @@ export default function ContactPage() {
                     <FaMapMarkerAlt className="text-xl" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-800">Ubicación</h4>
+                    <h4 className="font-bold text-slate-800">{t('contact_location')}</h4>
                     <p className="text-slate-500 text-sm">Av. Central Norte #123,<br />Tapachula, Chiapas, México</p>
                   </div>
                 </div>
@@ -45,7 +50,7 @@ export default function ContactPage() {
                     <FaPhoneAlt className="text-xl" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-800">Teléfono</h4>
+                    <h4 className="font-bold text-slate-800">{t('contact_phone')}</h4>
                     <p className="text-slate-500 text-sm">+52 962 123 4567</p>
                   </div>
                 </div>
@@ -75,17 +80,17 @@ export default function ContactPage() {
                     <FaClock className="text-xl" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-800">Horario</h4>
-                    <p className="text-slate-500 text-sm">Lun - Vie: 9:00 AM - 6:00 PM<br/>Sáb: 9:00 AM - 2:00 PM</p>
+                    <h4 className="font-bold text-slate-800">{t('contact_schedule')}</h4>
+                    <p className="text-slate-500 text-sm">{t('contact_schedule_days')}<br/>{t('contact_schedule_sat')}</p>
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="bg-gradient-to-br from-amber-500 to-amber-600 p-8 rounded-2xl shadow-lg text-white text-center">
-              <h3 className="text-xl font-bold mb-4 font-display">¿Listo para publicar?</h3>
+              <h3 className="text-xl font-bold mb-4 font-display">{t('contact_ready_publish')}</h3>
               <p className="mb-6 text-amber-100 text-sm">
-                Únete a nuestra red y llega a miles de compradores potenciales hoy mismo.
+                {t('contact_join_network')}
               </p>
               <a 
                 href="https://wa.me/529622229339" 
@@ -93,7 +98,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="inline-block bg-white text-amber-600 px-6 py-3 rounded-full font-bold hover:bg-slate-100 transition-colors shadow-md"
               >
-                Contactar Asesor
+                {t('contact_contact_advisor')}
               </a>
             </div>
           </div>
@@ -101,8 +106,8 @@ export default function ContactPage() {
           {/* Contact Form & Map */}
           <div className="lg:col-span-2 space-y-8">
             <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100">
-              <h3 className="text-2xl font-bold text-slate-900 mb-2 font-display">Envíanos un Mensaje</h3>
-              <p className="text-slate-500 mb-8">Completa el formulario y nos pondremos en contacto contigo a la brevedad.</p>
+              <h3 className="text-2xl font-bold text-slate-900 mb-2 font-display">{t('contact_send_message_title')}</h3>
+              <p className="text-slate-500 mb-8">{t('contact_send_message_desc')}</p>
               <ContactForm />
             </div>
 

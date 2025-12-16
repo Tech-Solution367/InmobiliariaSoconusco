@@ -1,39 +1,42 @@
 'use client';
 
 import { FaHome, FaSmile, FaHandshake, FaAward } from 'react-icons/fa';
-
-const stats = [
-  {
-    id: 1,
-    label: 'Propiedades Vendidas',
-    value: '+500',
-    icon: FaHome,
-    color: 'text-amber-500',
-  },
-  {
-    id: 2,
-    label: 'Clientes Felices',
-    value: '+500',
-    icon: FaSmile,
-    color: 'text-amber-500',
-  },
-  {
-    id: 3,
-    label: 'Años de Experiencia',
-    value: '6',
-    icon: FaAward,
-    color: 'text-amber-500',
-  },
-  {
-    id: 4,
-    label: 'Tratos Cerrados',
-    value: '98%',
-    icon: FaHandshake,
-    color: 'text-amber-500',
-  },
-];
+import { useLanguage } from '../context/LanguageContext';
 
 export default function StatsSection() {
+  const { t } = useLanguage();
+
+  const stats = [
+    {
+      id: 1,
+      label: t('stats_sold'),
+      value: '+500',
+      icon: FaHome,
+      color: 'text-amber-500',
+    },
+    {
+      id: 2,
+      label: t('stats_clients'),
+      value: '+500',
+      icon: FaSmile,
+      color: 'text-amber-500',
+    },
+    {
+      id: 3,
+      label: t('stats_years'),
+      value: '6',
+      icon: FaAward,
+      color: 'text-amber-500',
+    },
+    {
+      id: 4,
+      label: t('stats_deals'),
+      value: '98%',
+      icon: FaHandshake,
+      color: 'text-amber-500',
+    },
+  ];
+
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
