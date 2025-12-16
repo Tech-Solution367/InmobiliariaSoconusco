@@ -63,7 +63,7 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu Overlay */}
-        <div className={md:hidden absolute top-full left-0 w-full bg-slate-900 shadow-xl overflow-hidden transition-all duration-300 ease-in-out }>
+        <div className={`md:hidden absolute top-full left-0 w-full bg-slate-900 shadow-xl overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100 border-b border-slate-700' : 'max-h-0 opacity-0'}`}>
           <div className="flex flex-col p-4 space-y-2">
             <Link href="/" className="block py-3 px-4 rounded-lg hover:bg-slate-800 text-center font-medium text-lg" onClick={() => setIsOpen(false)}>
               {t('nav_home')}
