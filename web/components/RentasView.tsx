@@ -20,7 +20,7 @@ export default function RentasView({ properties }: RentasViewProps) {
       
       <div className="relative">
         <HeroVideo 
-          src="/videos/CasaDeRenta.mp4"
+          src="/videos/CasaEnRenta.mp4"
           title={t('rentals_title')}
           subtitle={t('rentals_subtitle')}
           muted={true}
