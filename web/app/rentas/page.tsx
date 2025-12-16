@@ -4,7 +4,6 @@ import PropertyCard from '@/components/PropertyCard';
 import Navbar from '@/components/Navbar';
 import PriceFilter from '@/components/PriceFilter';
 import HeroVideo from '@/components/HeroVideo';
-import { FaSearch } from 'react-icons/fa';
 
 async function getProperties(searchParams: { [key: string]: string | string[] | undefined }) {
   await dbConnect();
@@ -50,15 +49,7 @@ export default async function RentasPage({
       </div>
 
       <div className="container mx-auto px-4 -mt-20 relative z-10 mb-20">
-        <div className="bg-white rounded-2xl shadow-xl p-6 md:p-8 mb-12 border border-slate-100">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="bg-amber-500 p-2 rounded-lg text-white">
-              <FaSearch />
-            </div>
-            <h2 className="text-xl font-bold text-slate-800 font-display">Filtrar Propiedades</h2>
-          </div>
-          <PriceFilter />
-        </div>
+        <PriceFilter />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {properties.map((property) => (

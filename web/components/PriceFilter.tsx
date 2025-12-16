@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { FaFilter, FaChevronDown } from 'react-icons/fa';
 
 export default function PriceFilter() {
   const router = useRouter();
@@ -9,6 +10,7 @@ export default function PriceFilter() {
   
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const min = searchParams.get('minPrice');
@@ -42,42 +44,66 @@ export default function PriceFilter() {
   };
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-md mb-8">
-      <h3 className="text-lg font-semibold mb-4 text-slate-800">Filtrar por Precio</h3>
-      <div className="flex flex-col md:flex-row gap-4 items-end">
-        <div className="w-full md:w-1/3">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Precio Mínimo</label>
-          <input
-            type="number"
-            value={minPrice}
-            onChange={(e) => setMinPrice(e.target.value)}
-            placeholder="Ej. 1000000"
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900"
-          />
+    <div className="bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden mb-12">
+      <button 
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-6 bg-white hover:bg-slate-50 transition-colors text-left md:cursor-default"
+      >
+        <div className="flex items-center gap-3">
+          <div className="bg-amber-500 p-2 rounded-lg text-white shadow-md">
+            <FaFilter />
+          </div>
+          <div>
+             <h2 className="text-xl font-bold text-slate-800 font-display">Filtrar Propiedades</h2>
+             <p className="text-sm text-slate-500 md:hidden">
+               {isOpen ? 'Toca para ocultar filtros' : 'Toca para mostrar filtros'}
+             </p>
+          </div>
         </div>
-        <div className="w-full md:w-1/3">
-          <label className="block text-sm font-medium text-gray-700 mb-1">Precio Máximo</label>
-          <input
-            type="number"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-            placeholder="Ej. 5000000"
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500 text-slate-900"
-          />
+        <div className={`transform transition-transform duration-300 md:hidden ${isOpen ? 'rotate-180' : ''}`}>
+          <FaChevronDown className="text-slate-400" />
         </div>
-        <div className="flex gap-2 w-full md:w-1/3">
-          <button
-            onClick={handleFilter}
-            className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
-          >
-            Filtrar
-          </button>
-          <button
-            onClick={handleClear}
-            className="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Limpiar
-          </button>
+      </button>
+
+      <div className={`transition-all duration-500 ease-in-out overflow-hidden ${isOpen ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'} md:max-h-[500px] md:opacity-100`}>
+        <div className="p-6 pt-0 md:p-8 md:pt-0 border-t border-slate-100 md:border-none mt-2 md:mt-0">
+          <h3 className="text-lg font-semibold mb-4 text-slate-800 hidden md:block">Filtrar por Precio</h3>
+          <div className="flex flex-col md:flex-row gap-4 items-end">
+            <div className="w-full md:w-1/3">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Precio Mínimo</label>
+              <input
+                type="number"
+                value={minPrice}
+                onChange={(e) => setMinPrice(e.target.value)}
+                placeholder="Ej. 1000000"
+                className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-slate-900 transition-all"
+              />
+            </div>
+            <div className="w-full md:w-1/3">
+              <label className="block text-sm font-medium text-gray-700 mb-1">Precio Máximo</label>
+              <input
+                type="number"
+                value={maxPrice}
+                onChange={(e) => setMaxPrice(e.target.value)}
+                placeholder="Ej. 5000000"
+                className="w-full p-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-transparent text-slate-900 transition-all"
+              />
+            </div>
+            <div className="flex gap-3 w-full md:w-1/3">
+              <button
+                onClick={handleFilter}
+                className="flex-1 bg-slate-900 text-white py-3 px-4 rounded-xl font-bold hover:bg-amber-500 hover:text-slate-900 transition-all shadow-md"
+              >
+                Filtrar
+              </button>
+              <button
+                onClick={handleClear}
+                className="px-6 py-3 border border-slate-200 rounded-xl text-slate-600 font-semibold hover:bg-slate-50 transition-colors"
+              >
+                Limpiar
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
