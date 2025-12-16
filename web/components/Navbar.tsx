@@ -17,9 +17,9 @@ const Navbar = () => {
   return (
     <nav className="bg-slate-900 text-white p-4 shadow-lg sticky top-0 z-50 border-b border-amber-500/30">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
-        <Link href="/" className="flex items-center gap-2 text-2xl font-bold text-amber-500 hover:text-amber-400 transition-colors">
+        <Link href="/" className="flex items-center gap-2 text-lg md:text-2xl font-bold text-amber-500 hover:text-amber-400 transition-colors">
           <FaHome className="text-amber-500" />
-          <span className="tracking-tight">Inmobiliaria Soconusco</span>
+          <span className="tracking-tight truncate max-w-[200px] md:max-w-none">Inmobiliaria Soconusco</span>
         </Link>
 
         {/* Mobile Menu Button */}

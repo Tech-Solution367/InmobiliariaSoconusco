@@ -33,11 +33,11 @@ export default function LanguageSwitcher() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-slate-800 transition-colors text-white border border-slate-700"
+        className="flex items-center gap-2 px-2 py-1 md:px-3 md:py-2 rounded-lg hover:bg-slate-800 transition-colors text-white border border-slate-700"
         aria-label="Select Language"
       >
-        <FaGlobe className="text-amber-500" />
-        <span className="uppercase font-bold text-sm">{language}</span>
+        <FaGlobe className="text-amber-500 text-lg" />
+        <span className="uppercase font-bold text-xs md:text-sm">{language}</span>
       </button>
 
       {isOpen && (
