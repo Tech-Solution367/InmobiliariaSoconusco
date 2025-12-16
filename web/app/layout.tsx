@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Inter } from "next/font/google";
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -17,6 +17,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Inmobiliaria Soconusco",
   description: "Encuentra tu hogar ideal en el Soconusco",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({

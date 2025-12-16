@@ -28,27 +28,27 @@ const Navbar = () => {
         </button>
 
         {/* Desktop & Mobile Menu */}
-        <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto mt-4 md:mt-0`}>
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 font-medium text-lg items-center">
-            <Link href="/" className="hover:text-amber-400 transition-colors relative group">
+        <div className={`${isOpen ? 'block' : 'hidden'} w-full md:block md:w-auto mt-4 md:mt-0 transition-all duration-300 ease-in-out`}>
+          <div className="flex flex-col md:flex-row gap-4 md:gap-8 font-medium text-lg items-center bg-slate-800 md:bg-transparent p-4 md:p-0 rounded-xl md:rounded-none border border-slate-700 md:border-none">
+            <Link href="/" className="hover:text-amber-400 transition-colors relative group w-full md:w-auto text-center py-2 md:py-0 border-b border-slate-700 md:border-none" onClick={() => setIsOpen(false)}>
               Inicio
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span className="hidden md:block absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link href="/ventas" className="hover:text-amber-400 transition-colors relative group">
+            <Link href="/ventas" className="hover:text-amber-400 transition-colors relative group w-full md:w-auto text-center py-2 md:py-0 border-b border-slate-700 md:border-none" onClick={() => setIsOpen(false)}>
               Ventas
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span className="hidden md:block absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link href="/rentas" className="hover:text-amber-400 transition-colors relative group">
+            <Link href="/rentas" className="hover:text-amber-400 transition-colors relative group w-full md:w-auto text-center py-2 md:py-0 border-b border-slate-700 md:border-none" onClick={() => setIsOpen(false)}>
               Rentas
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span className="hidden md:block absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link href="/about" className="hover:text-amber-400 transition-colors relative group">
+            <Link href="/about" className="hover:text-amber-400 transition-colors relative group w-full md:w-auto text-center py-2 md:py-0 border-b border-slate-700 md:border-none" onClick={() => setIsOpen(false)}>
               Quiénes Somos
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span className="hidden md:block absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
-            <Link href="/contact" className="hover:text-amber-400 transition-colors relative group">
+            <Link href="/contact" className="hover:text-amber-400 transition-colors relative group w-full md:w-auto text-center py-2 md:py-0" onClick={() => setIsOpen(false)}>
               Contactos
-              <span className="absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
+              <span className="hidden md:block absolute left-0 bottom-0 w-0 h-0.5 bg-amber-500 transition-all duration-300 group-hover:w-full"></span>
             </Link>
           </div>
         </div>
