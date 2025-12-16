@@ -39,7 +39,7 @@ export default function VentasView({ properties }: VentasViewProps) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {properties.map((property) => (
-              <PropertyCard key={property._id as string} property={property} />
+              <PropertyCard key={(property._id as unknown) as string} property={property} />
             ))}
           </div>
         )}
