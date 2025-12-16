@@ -39,7 +39,7 @@ export default function RentasView({ properties }: RentasViewProps) {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {properties.map((property) => (
-              <PropertyCard key={property._id} property={property} />
+              <PropertyCard key={property._id as string} property={property} />
             ))}
           </div>
         )}
