@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Navbar from '@/components/Navbar';
 import { useRouter } from 'next/navigation';
 import { FaCloudUploadAlt, FaTrash, FaVideo, FaPlus, FaMapMarkerAlt } from 'react-icons/fa';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 interface NearbyPlace {
   category: 'escuela' | 'banco' | 'plaza' | 'servicio' | 'negocio' | 'otro';
@@ -200,6 +201,9 @@ export default function UploadPage() {
   return (
     <div className="min-h-screen bg-slate-50">
       <Navbar />
+      <div className="container mx-auto px-4 pt-8 pb-0 flex justify-end">
+        <LanguageSwitcher variant="inline" />
+      </div>
       <div className="container mx-auto p-4 py-12 max-w-3xl">
         <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-slate-200">
           <div className="bg-slate-900 p-8 text-center">

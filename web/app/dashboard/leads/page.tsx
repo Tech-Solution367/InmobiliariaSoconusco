@@ -4,6 +4,7 @@ import Property from '@/models/Property'; // Ensure models are registered
 import Agent from '@/models/Agent'; // Ensure models are registered
 import LeadsTable from '@/components/LeadsTable';
 import Navbar from '@/components/Navbar';
+import LanguageSwitcher from '@/components/LanguageSwitcher';
 
 import Footer from '@/components/Footer';
 
@@ -40,6 +41,9 @@ export default async function LeadsDashboard() {
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col">
       <Navbar />
+      <div className="container mx-auto px-4 pt-8 pb-0 flex justify-end">
+        <LanguageSwitcher variant="inline" />
+      </div>
       <div className="container mx-auto px-4 py-12 flex-grow">
         <div className="flex justify-between items-center mb-8">
           <div>
